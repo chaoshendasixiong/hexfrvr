@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
+import com.csdsx.game.control.IControl;
 
 /**
  * Created by Administrator on 2016-07-01.
@@ -15,6 +16,7 @@ public class StageWrapper {
     public static final String tag = "StageWrapper";
     public static BaseStage baseStage;
     private static SpriteBatch spriteBatch;
+
 
     /**
      * 简单对stage的包装

@@ -2,6 +2,7 @@ package com.csdsx.game.util;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.ScreenAdapter;
+import com.csdsx.game.control.IControl;
 
 /**
  * 自定义类似ScreenAdapter
@@ -10,6 +11,16 @@ import com.badlogic.gdx.ScreenAdapter;
 public abstract class BaseScreen implements Screen {
 
     public BaseGame baseGame;
+
+    public IControl control;
+
+    public IControl getControl() {
+        return control;
+    }
+
+    public void setControl(IControl control) {
+        this.control = control;
+    }
 
     public void setScreen(BaseScreen screen) {
         baseGame.setScreen(screen);

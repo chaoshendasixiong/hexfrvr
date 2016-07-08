@@ -15,6 +15,8 @@ import com.badlogic.gdx.utils.Align;
 import com.csdsx.game.util.CellXY;
 import com.csdsx.game.util.Log;
 
+import java.io.Serializable;
+
 /**
  * 六边形格子类
  * Created by Administrator on 2016-06-30.

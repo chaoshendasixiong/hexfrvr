@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.ScaleToAction;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 import com.csdsx.game.util.Log;
+import com.csdsx.game.view.MenuScreen;
 
 import javax.swing.*;
 
@@ -65,10 +66,25 @@ public class UnitFactory {
     }
     public static Unit createUnit(int type, int index) {
         UnitType unitType = UnitType.get(type);
-        Unit unit = null;
+        Log.debug("",unitType.getName());
 //        switch (unitType){
 //            case dian:
-                unit = new Unit(unitType.getName(), type, index);
+        final Unit unit = new Unit(unitType.getName(), type, index);
+        switch (unitType) {
+            case dian :case ling3:case lang1:case lang3:case huan2:
+            case huan4:case qu1:case qu3:case qu5:case zhe3:case zhe5:
+                unit.setOdPos(15,18);
+                break;
+            case ling2:case ling1:case huan1:case huan5:case qu2:case zhe2:
+                unit.setOdPos(30, 18);
+                break;
+            case huan3:case zhe4:
+                unit.setOdPos(45, 18);
+                break;
+            case lang2:case qu4:case zhe1:
+                unit.setOdPos(60,18);
+                break;
+        }
                 unit.addListener(new DragListener() {
                     private float startDragX;
                     private float startDragY;
@@ -83,6 +99,7 @@ public class UnitFactory {
                     public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                         ScaleToAction action = Actions.scaleTo(1.2f, 1.2f, 0.3f);
                         event.getTarget().addAction(action);
+                        MenuScreen.cur_unit = unit;
                         return super.touchDown(event, x, y, pointer, button);
 
                     }
@@ -91,6 +108,7 @@ public class UnitFactory {
                     public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                         ScaleToAction action = Actions.scaleTo(1.0f, 1.0f, 0.3f);
                         event.getTarget().addAction(action);
+                        MenuScreen.cur_unit = null;
                         super.touchUp(event, x, y, pointer, button);
                     }
 

@@ -1,6 +1,7 @@
 package com.csdsx.game.model;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -26,6 +27,7 @@ public class Player extends Actor {
         mTextureRegion = new TextureRegion(mTexture);
         mSprite = new Sprite(mTextureRegion);
         mSprite.setPosition(0,0);
+        mSprite.setColor(Color.BLUE);
         this.setScale(0.5f);
     }
 
@@ -60,12 +62,12 @@ public class Player extends Actor {
 //            mSprite.setScale(1, 1);
 //            mSprite.setRotation(0);
 //        }
-//        mSprite.draw(batch);
-        batch.draw(mTextureRegion, getX(), getY(),
-                mTextureRegion.getRegionWidth() / 2,
-                mTextureRegion.getRegionHeight() / 2,
-                mTextureRegion.getRegionWidth(),
-                mTextureRegion.getRegionHeight(), getScaleX(), getScaleY(),
-                getRotation());
+        mSprite.draw(batch);
+//        batch.draw(mTextureRegion, getX(), getY(),
+//                mTextureRegion.getRegionWidth() / 2,
+//                mTextureRegion.getRegionHeight() / 2,
+//                mTextureRegion.getRegionWidth(),
+//                mTextureRegion.getRegionHeight(), getScaleX(), getScaleY(),
+//                getRotation());
     }
 }

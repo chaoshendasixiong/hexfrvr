@@ -1,4 +1,4 @@
-package com.csdsx.game;
+package com.csdsx.game.view;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -7,14 +7,12 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.*;
+import com.csdsx.game.control.GameControl;
 import com.csdsx.game.model.HexMap;
 import com.csdsx.game.model.Player;
 import com.csdsx.game.model.Unit;
 import com.csdsx.game.model.UnitFactory;
-import com.csdsx.game.util.BaseScreen;
-import com.csdsx.game.util.BaseStage;
-import com.csdsx.game.util.Log;
-import com.csdsx.game.util.StageWrapper;
+import com.csdsx.game.util.*;
 
 /**
  * Created by Administrator on 2016-07-01.
@@ -25,11 +23,13 @@ public class MenuScreen extends BaseScreen {
     public static final String tag = "MenuScreen";
     HexMap map;
     Unit[] units;
+    public static Unit cur_unit = null;
+
     @Override
     public void onInit() {
         units = new Unit[3];
         /*
-        Player player = new Player();
+
         // 移动操作
         MoveByAction action1 = Actions.moveBy(250, 220, 3);
         ScaleByAction action2 = Actions.scaleBy(3, 3, 3);
@@ -51,9 +51,11 @@ public class MenuScreen extends BaseScreen {
 
 //        player.addAction(action1);
 //        Actions.addAction(action1, player);
-
+*/
+        /*
+        Player player = new Player();
         StageWrapper.baseStage.addActor(player);
-        */
+*/
         HexMap map = new HexMap();
         map.addStage();
         for(int i = 0; i < 3; i++) {
@@ -61,10 +63,18 @@ public class MenuScreen extends BaseScreen {
             units[i] = UnitFactory.createUnit(id, i);
             StageWrapper.baseStage.addActor(units[i]);
         }
+        this.control = new GameControl();
         Log.debug(tag, "onInit");
     }
 
     @Override
     public void onLogic() {
+        //判断部件在map上的地图是否匹配 匹配就显示图形
+        if(MenuScreen.cur_unit != null) {
+            float x = cur_unit.getOd_x()+cur_unit.getX();
+            float y = cur_unit.getOd_y()+cur_unit.getY();
+            char[] result = CellXY.getLogic_xy(x, y);
+            Log.debug(tag, String.valueOf(result));
+        }
     }
 }

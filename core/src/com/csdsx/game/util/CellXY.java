@@ -9,7 +9,6 @@ public class CellXY {
     static float len = (float)(cell_len*1.732508);
 
     public static float getX(int x, int y) {
-
         if (y%2==0) {
             return len*x;
         }else{//奇数
@@ -25,5 +24,21 @@ public class CellXY {
 //            return len*n;
 //        }
         return y*cell_len*3/2;
+    }
+    public static char[] getLogic_xy(float pos_x, float pos_y) {
+        char[] result = new char[2];
+        //计算y
+        int y = (int)(pos_y*2/(3*cell_len));
+        result[1] = (char)('0'+y);
+        //分奇数和偶数
+        if(y %2==0) {
+            int x = (int)(pos_x/len);
+            result[0] = (char)('0'+x);
+        }else{
+            int x = (int)((pos_x+len/2)/len);
+            result[0] = (char)('0'+x);
+        }
+
+        return result;
     }
 }

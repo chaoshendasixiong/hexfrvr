@@ -34,16 +34,16 @@ public class Cell extends Actor{
 
     private Texture mTexture;
     private TextureRegion mTextureRegion;
-    public Cell(int x, int y) {
+    public Cell(int x, int y, String name) {
         this.x = x;
         this.y = y;
         initPos();
-        initSprite();
+        initSprite(name);
 
     }
 
-    private void initSprite() {
-        this.mTexture = new Texture(Gdx.files.internal("cell.png"));
+    private void initSprite(String name) {
+        this.mTexture = new Texture(Gdx.files.internal(name));
         this.mTextureRegion = new TextureRegion(this.mTexture);
         this.addListener(new ClickListener(){
             @Override

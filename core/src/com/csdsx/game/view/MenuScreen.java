@@ -56,7 +56,7 @@ public class MenuScreen extends BaseScreen {
         Player player = new Player();
         StageWrapper.baseStage.addActor(player);
 */
-        HexMap map = new HexMap();
+        map = new HexMap();
         map.addStage();
         for(int i = 0; i < 3; i++) {
             int id = MathUtils.random(1, 22);
@@ -74,6 +74,10 @@ public class MenuScreen extends BaseScreen {
             float x = cur_unit.getOd_x()+cur_unit.getX();
             float y = cur_unit.getOd_y()+cur_unit.getY();
             char[] result = CellXY.getLogic_xy(x, y);
+            if(result == null) {
+                return;
+            }
+            map.show(result[0]-'0', result[1]-'0');
             Log.debug(tag, String.valueOf(result));
         }
     }

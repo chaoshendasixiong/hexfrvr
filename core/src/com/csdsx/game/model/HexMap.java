@@ -34,7 +34,7 @@ public class HexMap {
                     }
                 }
                 if(flag){
-                    map[index] = new Cell(j, i);
+                    map[index] = new Cell(j, i, "cell.png");
 
                 }else{
                     map[index] = null;
@@ -59,4 +59,14 @@ public class HexMap {
         }
     }
 
+    public void show(int x, int y) {
+        int index = (y-1)*9+x-1;
+        for(int k = 0; k < noShow.length; k++) {
+            if(index + 1 == noShow[k]) {
+                return;
+            }
+        }
+        map[index] = new Cell(x,y,"cell_.png");
+        StageWrapper.baseStage.addActor(map[index]);
+    }
 }

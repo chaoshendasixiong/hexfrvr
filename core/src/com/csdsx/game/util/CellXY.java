@@ -29,14 +29,21 @@ public class CellXY {
         char[] result = new char[2];
         //计算y
         int y = (int)(pos_y*2/(3*cell_len));
+        if(y > 9||y ==0) {
+            return null;
+        }
+        int x = 0;
         result[1] = (char)('0'+y);
         //分奇数和偶数
         if(y %2==0) {
-            int x = (int)(pos_x/len);
+             x = (int)(pos_x/len);
             result[0] = (char)('0'+x);
         }else{
-            int x = (int)((pos_x+len/2)/len);
+            x = (int)((pos_x+len/2)/len);
             result[0] = (char)('0'+x);
+        }
+        if(x >9||x ==0) {
+            return null;
         }
 
         return result;

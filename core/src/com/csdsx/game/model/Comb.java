@@ -12,6 +12,7 @@ public class Comb {
     public int logic_y;//[1,9]
     public float pos_x;//float which in screen
     public float pos_y;//float which in screen
+    public boolean hited;//is or hited
 
     static int cell_len = 23;//hexfrvr len size
     static float len = (float)(cell_len*1.732508);//cell diagonals len
@@ -55,6 +56,12 @@ public class Comb {
         }
         if(x >9||x ==0) {
             return null;
+        }
+        int index = (y-1)*9+x;
+        for(int i = 0; i < HMap.noShow.length; i++) {
+            if(index == HMap.noShow[i]) {
+                return null;
+            }
         }
         return result;
     }

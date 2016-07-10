@@ -5,11 +5,13 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.*;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
+import com.csdsx.game.control.GameControl;
 import com.csdsx.game.util.Log;
 import com.csdsx.game.view.MenuScreen;
 
@@ -59,12 +61,8 @@ public class Ding extends Group{
         {2,1,1,2,2,2,1,3},
         {1,1,2,1,3,1,2,2}
     };
-
-    public Ding(int sub_type, int turn_index) {
+    public void resetDing(int sub_type) {
         this.sub_type = sub_type;
-        this.turn_index = turn_index;
-        offset_x = 20+turn_index*padding_st;
-        offset_y = padding_y;
         String name = "";
         if(sub_type == 1) {
             name = "dian.png";
@@ -98,15 +96,24 @@ public class Ding extends Group{
         }
         initDing();
         this.setScale(scale);
-
         setOrigin(0,0);
         this.setPosition(offset_x, offset_y);
+    }
+
+    public Ding(int sub_type, int turn_index) {
+        this.turn_index = turn_index;
+        offset_x = 20+turn_index*padding_st;
+        offset_y = padding_y;
+        resetDing(sub_type);
+
 //        setWidth(200);
 //        setHeight(200);
 //        setOrigin(combActors[0].getX(), combActors[0].getY());
 //        setOrigin(200,360);
 //        setOrigin(405,-560);
     }
+
+    public GameControl gameControl;
 
     public boolean selected;
 
@@ -165,6 +172,12 @@ public class Ding extends Group{
                     ScaleToAction action2 = Actions.scaleTo(scale, scale, 0.2f);
                     ParallelAction parallelAction = new ParallelAction(action1, action2);
                     actor.addAction(parallelAction);
+                    if(gameControl.doHit()) {
+//                        ding.remove();
+                        ding.clear();
+                        int id = MathUtils.random(1, 22);
+                        ding.resetDing(id);
+                    }
                     super.touchUp(event, x, y, pointer, button);
                 }
 
@@ -214,6 +227,10 @@ public class Ding extends Group{
             float y = combActor.comb.pos_y+Comb.cell_len+this.getY();
             int[] re = Comb.getLogic_xy(x, y);
             if(re== null) {
+                return null;
+            }
+            //add judge re[0] re[1] is hited
+            if(gameControl.isHasHit(re[0], re[1])) {
                 return null;
             }
             result[index++] = re[0];

@@ -15,7 +15,7 @@ import com.csdsx.game.control.IControl;
 public class StageWrapper {
     public static final String tag = "StageWrapper";
     public static BaseStage baseStage;
-    private static SpriteBatch spriteBatch;
+    public static SpriteBatch spriteBatch;
 
 
     /**
@@ -31,6 +31,7 @@ public class StageWrapper {
         camera.setToOrtho(true, w, h);
         ScalingViewport viewport = new ScalingViewport(Scaling.stretch, w, h, camera);
         baseStage = new BaseStage(viewport, spriteBatch);
+        baseStage.setDebugAll(true);
         Gdx.input.setInputProcessor(baseStage);
 //        baseStage.addListener(new BaseListener());
     }

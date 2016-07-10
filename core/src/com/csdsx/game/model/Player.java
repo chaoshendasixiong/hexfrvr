@@ -27,8 +27,8 @@ public class Player extends Actor {
         mTextureRegion = new TextureRegion(mTexture);
         mSprite = new Sprite(mTextureRegion);
         mSprite.setPosition(0,0);
-        mSprite.setColor(Color.BLUE);
-        this.setScale(0.5f);
+//        mSprite.setColor(Color.BLUE);
+//        this.setScale(0.5f);
     }
 
     @Override

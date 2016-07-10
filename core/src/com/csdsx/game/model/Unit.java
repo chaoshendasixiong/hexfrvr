@@ -23,6 +23,7 @@ import java.util.List;
  * Created by Administrator on 2016-06-30.
  */
 public class Unit extends Actor implements Serializable {
+    private boolean isPlace;
     private ShapeRenderer debugShapes;
     private float od_x;
     private float od_y;
@@ -41,6 +42,11 @@ public class Unit extends Actor implements Serializable {
 //        mTexture = new Texture(Gdx.files.internal("dian.png"));
 //        this.mTextureRegion = new TextureRegion(this.mTexture);
     }
+
+    public int getType_id() {
+        return type_id;
+    }
+
     public Unit(String name, int type_id, int pos_index) {
         debugShapes = new ShapeRenderer();
         debugShapes.setAutoShapeType(true);

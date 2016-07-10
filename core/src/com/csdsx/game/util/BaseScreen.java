@@ -47,6 +47,7 @@ public abstract class BaseScreen implements Screen {
     @Override
     public void render(float delta) {
         onLogic();
+
         StageWrapper.update();
     }
 

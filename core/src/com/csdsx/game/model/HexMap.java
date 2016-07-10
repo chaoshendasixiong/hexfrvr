@@ -59,14 +59,39 @@ public class HexMap {
         }
     }
 
-    public void show(int x, int y) {
+    public void show(int x, int y, int type_id) {
         int index = (y-1)*9+x-1;
         for(int k = 0; k < noShow.length; k++) {
             if(index + 1 == noShow[k]) {
                 return;
             }
         }
-        map[index] = new Cell(x,y,"cell_.png");
-        StageWrapper.baseStage.addActor(map[index]);
+        int[] addons = new int[4];
+        addons[0] = 0;
+        switch (type_id){
+            case 1:
+                addons = new int[1];
+                addons[0] = 0;
+                break;
+            case 2:
+                //y =1 x=[3,6]
+                //y =2 x=[2,6]
+                //y=3 x=[2,7]
+                //y=4 x=[1,7]
+                //y=5  x=[2,8]
+                //y=6 x=[2,7]
+                //y=7 x=[3,7]
+                //y=8 x=[3,6]
+                //y=9 x=//
+                addons[1] = 1;
+                addons[2] = 8;
+                addons[3] = 9;
+                break;
+        }
+        for(int i = 0; i< addons.length;i++) {
+            map[index+i].setNewTexture("cell_.png");
+//            StageWrapper.baseStage.addActor(map[index]);
+        }
+
     }
 }

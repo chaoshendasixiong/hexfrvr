@@ -77,7 +77,7 @@ public class MenuScreen extends BaseScreen {
             if(result == null) {
                 return;
             }
-            map.show(result[0]-'0', result[1]-'0');
+            map.show(result[0]-'0', result[1]-'0', cur_unit.getType_id());
             Log.debug(tag, String.valueOf(result));
         }
     }

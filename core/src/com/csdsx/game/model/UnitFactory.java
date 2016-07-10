@@ -65,7 +65,7 @@ public class UnitFactory {
         }
     }
     public static Unit createUnit(int type, int index) {
-        UnitType unitType = UnitType.get(type);
+        UnitType unitType = UnitType.get(2);
         Log.debug("",unitType.getName());
 //        switch (unitType){
 //            case dian:

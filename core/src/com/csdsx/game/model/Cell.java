@@ -22,6 +22,12 @@ import java.io.Serializable;
  * Created by Administrator on 2016-06-30.
  */
 public class Cell extends Actor{
+    private boolean falg;
+
+    public void setFalg(boolean falg) {
+        this.falg = falg;
+    }
+
     //颜色
     private Color color;
     //逻辑坐标x
@@ -40,6 +46,12 @@ public class Cell extends Actor{
         initPos();
         initSprite(name);
 
+    }
+    public void setNewTexture(String name) {
+        this.mTexture = new Texture(Gdx.files.internal(name));
+        this.mTextureRegion = new TextureRegion(this.mTexture);
+        this.setHeight(this.mTextureRegion.getRegionHeight());
+        this.setWidth(this.mTextureRegion.getRegionWidth());
     }
 
     private void initSprite(String name) {

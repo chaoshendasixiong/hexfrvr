@@ -108,6 +108,8 @@ public class Ding extends Group{
 //        setOrigin(405,-560);
     }
 
+    public boolean selected;
+
     private void initDing() {
         for (int i = 0; i < combs.length; i++) {
             int x = dataSet[sub_type-1][i*2];
@@ -140,6 +142,8 @@ public class Ding extends Group{
                     ScaleToAction action = Actions.scaleTo(1.0f, 1.0f, 0.2f);
                     Actor actor = event.getTarget().getParent();
                     actor.addAction(action);
+                    Ding ding = (Ding)actor;
+                    ding.selected = true;
 //                    Ding ding = (Ding)actor;
 //                    for(CombActor combActor:ding.combActors) {
 //                        combActor.addAction(action);
@@ -156,6 +160,7 @@ public class Ding extends Group{
 //                    MoveByAction action = Actions.moveBy(0,100,0.5f);
                     Actor actor = event.getTarget().getParent();
                     Ding ding = (Ding)actor;
+                    ding.selected = false;
                     MoveToAction action1 = Actions.moveTo(ding.offset_x, offset_y, 0.2f);
                     ScaleToAction action2 = Actions.scaleTo(scale, scale, 0.2f);
                     ParallelAction parallelAction = new ParallelAction(action1, action2);
@@ -199,6 +204,22 @@ public class Ding extends Group{
 //        }
 //        batch.end();
 
+    }
+
+    public int[] hit() {
+        int[] result = new int[combActors.length*2];
+        int index = 0;
+        for(CombActor combActor:combActors) {
+            float x = combActor.comb.pos_x+Comb.len/2 +this.getX();
+            float y = combActor.comb.pos_y+Comb.cell_len+this.getY();
+            int[] re = Comb.getLogic_xy(x, y);
+            if(re== null) {
+                return null;
+            }
+            result[index++] = re[0];
+            result[index++] = re[1];
+        }
+        return result;
     }
 
 }

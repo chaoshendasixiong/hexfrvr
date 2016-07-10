@@ -35,4 +35,27 @@ public class Comb {
     public static float get_Y(int y) {
         return y*cell_len*3/2;
     }
+
+    public static int[] getLogic_xy(float pos_x, float pos_y) {
+        int[] result = new int[2];
+        //计算y
+        int y = (int)(pos_y*2/(3*cell_len));
+        if(y > 9||y ==0) {
+            return null;
+        }
+        int x = 0;
+        result[1] = y;
+        //分奇数和偶数
+        if(y %2==0) {
+            x = (int)(pos_x/len);
+            result[0] = x;
+        }else{
+            x = (int)((pos_x+len/2)/len);
+            result[0] = x;
+        }
+        if(x >9||x ==0) {
+            return null;
+        }
+        return result;
+    }
 }

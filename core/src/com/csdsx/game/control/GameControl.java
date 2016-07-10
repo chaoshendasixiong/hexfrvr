@@ -31,5 +31,18 @@ public class GameControl implements IControl{
     @Override
     public void control() {
 //        this.map.draw(StageWrapper.spriteBatch);
+        //判断击中的部件并计算落点 是否符合条件
+        map.reset();
+        for(Ding ding:dings) {
+
+            if(ding.selected) {
+                int[] result = ding.hit();
+                if(result == null) {
+                    continue;
+                }
+
+                map.hitMap(result, ding.type);
+            }
+        }
     }
 }

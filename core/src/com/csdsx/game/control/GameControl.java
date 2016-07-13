@@ -21,6 +21,7 @@ public class GameControl implements IControl{
     HMap map;
     Ding[] dings;
     ImageButton reset;
+    Score score;
     public GameControl() {
         this.map = new HMap();
         StageWrapper.baseStage.addActor(map);
@@ -36,6 +37,8 @@ public class GameControl implements IControl{
             }
         });
         StageWrapper.baseStage.addActor(reset);
+        score  = new Score();
+        StageWrapper.baseStage.addActor(score);
     }
 
     private void randomDIng() {
@@ -63,16 +66,23 @@ public class GameControl implements IControl{
                 if(result == null) {
                     continue;
                 }else {
-
                     map.hitMap(result, ding.type);
                 }
             }
         }
-        map.compute();
+        int extra_score = map.compute();
+        score.addScore(extra_score);
     }
 
+
+
     public boolean doHit() {
-        return map.doHit();
+
+        boolean flag = map.doHit();
+        if(flag) {
+            score.addSuccess();
+        }
+        return flag;
     }
 
     public static int toIndex(int x, int y) {

@@ -203,20 +203,35 @@ public class HMap extends Actor{
             {37 ,46 ,56 ,65 ,75}
     };
 
-    public void compute() {
+    public int compute() {
+        int combo = 0;
+        int total_num = 0;
         for (int i = 0; i < line.length; i++) {
             int b_len = line[i].length;
             boolean flag = true;
+
             for(int j = 0; j < b_len; j++) {
                 flag = flag&combs[line[i][j]-1].hited;
             }
             if(flag) {
-                Log.debug("","zzzzzzzzzzzzzzzzzzz");
+                combo++;
+                total_num+=line[i].length;
+                combo++;
                 for(int j = 0; j < b_len; j++) {
                     combs[line[i][j]-1].hited = false;
                 }
+                Log.debug("compute",combo+"    "+total_num);
             }
         }
-
+        return genScore(combo, total_num);
+    }
+/*
+40+10*(combo+1)*total_num
+ */
+    public int genScore(int combo, int total_num) {
+        if(combo*total_num == 0) {
+            return 0;
+        }
+        return 40+10*(combo+1)*total_num;
     }
 }

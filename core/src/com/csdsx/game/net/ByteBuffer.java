@@ -85,13 +85,38 @@ public class ByteBuffer {
         System.arraycopy(buf, 0, new_buffer, last_len, avail_len);
         buffer = new_buffer;
 
-        return getPack();
+        return getPacket();
     }
 
-    public byte[] getPack() {
+    public byte[] getPacket() {
         int len = buffer.length;
+        if(len <= HEAD_LEN) {
+            return null;
+        }else{
+            int content_len = read_HEAD_LEN();
+            if(content_len < len - HEAD_LEN) {
+                byte[] result = new byte[content_len];
+                System.arraycopy(buffer, HEAD_LEN, result, 0, content_len);
+                int over_len = len - HEAD_LEN - content_len;
+                byte[] new_buffer = new byte[over_len];
+                System.arraycopy(buffer, HEAD_LEN + content_len, new_buffer, 0, over_len);
+                buffer = new_buffer;
+                return result;
+            }
+            else{
+                return null;
+            }
+        }
+    }
 
-        return null;
+    public int read_HEAD_LEN() {
+        if(HEAD_LEN == 2) {
+            return readShort(buffer);
+        }else if (HEAD_LEN == 4){
+            return readInt(buffer);
+        }else{
+            return -1;
+        }
     }
 
     public short readShort(byte[] buf) {

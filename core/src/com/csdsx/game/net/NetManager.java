@@ -46,11 +46,14 @@ public class NetManager {
                 while (!socket.isConnected()) {
 
                 }
-
                 byteBuffer = new ByteBuffer(socket.getInputStream());
 
                 while (true) {
-                    byte[] data = byteBuffer.getData();
+                    try {
+                        byte[] data = byteBuffer.getData();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         };

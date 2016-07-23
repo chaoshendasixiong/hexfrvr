@@ -25,45 +25,6 @@ public class ByteBuffer {
 
     public static int NEED_LEN = 0;
 
-
-    /*
-
-     InputStream in = socket.getInputStream();
-                try {
-                    int avail_len = in.available();
-                    //是否粘包
-                    if(NEED_LEN > 0 ) {
-                        //读取数据到缓冲区 在判断能否组成一个新的包
-                        if(avail_len < NEED_LEN) {
-                            NEED_LEN = NEED_LEN - avail_len;
-                            int new_len = buffer.length+NEED_LEN;
-
-                        }
-                    }else{
-                        if(avail_len <= HEAD_LEN) {
-                            //数据错误 直接关闭连接
-                            return;
-                        }else{
-                            //读取包头验证数据有效性
-
-                        }
-                    }
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                while (true) {
-                    char[] head = new char[HEAD_LEN];
-                    try {
-                        buffer
-                        int len = buffer.read(head, 0, HEAD_LEN);
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-     */
-
     public InputStream in;
     public ByteBuffer(InputStream in) {
         this.in = in;

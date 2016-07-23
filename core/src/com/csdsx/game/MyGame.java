@@ -6,7 +6,6 @@ import com.csdsx.game.util.BaseGame;
 import com.csdsx.game.util.Log;
 import com.csdsx.game.util.StageWrapper;
 import com.csdsx.game.view.GameScreen;
-import com.csdsx.game.view.MenuScreen;
 
 /**
  * Created by Administrator on 2016-07-01.
@@ -25,7 +24,7 @@ public class MyGame extends BaseGame {
         screen_width = Gdx.graphics.getWidth();
         screen_height = Gdx.graphics.getHeight();
         StageWrapper.initStage(GAME_WIDTH, GAME_HEIGHT);
-        NetManager.init();
+//        NetManager.init();
         setScreen(new GameScreen());
     }
 }

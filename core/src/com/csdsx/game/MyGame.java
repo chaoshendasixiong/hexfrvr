@@ -1,6 +1,7 @@
 package com.csdsx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.csdsx.game.net.NetManager;
 import com.csdsx.game.util.BaseGame;
 import com.csdsx.game.util.Log;
 import com.csdsx.game.util.StageWrapper;
@@ -24,6 +25,7 @@ public class MyGame extends BaseGame {
         screen_width = Gdx.graphics.getWidth();
         screen_height = Gdx.graphics.getHeight();
         StageWrapper.initStage(GAME_WIDTH, GAME_HEIGHT);
+        NetManager.init();
         setScreen(new GameScreen());
     }
 }

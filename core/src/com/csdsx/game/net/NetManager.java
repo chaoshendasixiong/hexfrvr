@@ -5,6 +5,7 @@ import com.badlogic.gdx.Net;
 import com.badlogic.gdx.net.NetJavaSocketImpl;
 import com.badlogic.gdx.net.Socket;
 import com.badlogic.gdx.net.SocketHints;
+import com.csdsx.game.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -27,8 +28,12 @@ public class NetManager {
 
     public static Socket socket;//最好使用Gdx.net 来操作 尽管底层也是NetJavaSocketImpl
 
+    public static String ip = "192.168.0.117";
+
+    public static int port = 9999;
+
     public static void init() {
-        socket = Gdx.net.newClientSocket(Net.Protocol.TCP, "192.168.111.128", 9999, new SocketHints());
+        socket = Gdx.net.newClientSocket(Net.Protocol.TCP, ip, port, new SocketHints());
 
         send_queue = new LinkedBlockingQueue<BaseMsg>();
         recv_queue = new LinkedBlockingQueue<BaseMsg>();
@@ -64,34 +69,35 @@ public class NetManager {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                try {
-                    BaseMsg baseMsg = send_queue.take();
-                    socket.getOutputStream().write(baseMsg.getBytes());
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                while (true) {
 
+                    try {
+                        BaseMsg baseMsg = send_queue.take();
+                        socket.getOutputStream().write(baseMsg.getBytes());
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         };
         scheduledThreadPool.submit(runnable);
     }
 
     public static void heartWork() {
-
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
                 sendHeart();
             }
         };
-        scheduledThreadPool.scheduleAtFixedRate(runnable, 1, 8, TimeUnit.SECONDS);
-
+        scheduledThreadPool.scheduleAtFixedRate(runnable, 1, 5, TimeUnit.SECONDS);
     }
 
     public static void sendHeart() {
-
+        String data = "HEART";
+        send_queue.offer(new BaseMsg(data));
     }
 /*
     public List<byte[]> getPacket(ByteBuffer buffer) throws Exception {

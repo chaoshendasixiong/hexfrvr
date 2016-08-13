@@ -8,9 +8,6 @@ import com.csdsx.game.util.BaseScreen;
  * Created by Administrator on 2016-07-09.
  */
 public class GameScreen extends BaseScreen{
-
-
-
     @Override
     public void onInit() {
         this.control = new GameControl();

@@ -13,7 +13,6 @@ import com.badlogic.gdx.scenes.scene2d.actions.*;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 import com.csdsx.game.control.GameControl;
 import com.csdsx.game.util.Log;
-import com.csdsx.game.view.MenuScreen;
 
 /**
  * Created by Administrator on 2016-07-09.
@@ -145,22 +144,13 @@ public class Ding extends Group{
 
                 @Override
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-
                     ScaleToAction action = Actions.scaleTo(1.0f, 1.0f, 0.2f);
                     Actor actor = event.getTarget().getParent();
                     actor.addAction(action);
                     Ding ding = (Ding)actor;
                     ding.selected = true;
-//                    Ding ding = (Ding)actor;
-//                    for(CombActor combActor:ding.combActors) {
-//                        combActor.addAction(action);
-//                    }
                     return super.touchDown(event, x, y, pointer, button);
-
                 }
-
-
-
 
                 @Override
                 public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
@@ -210,13 +200,6 @@ public class Ding extends Group{
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
-//        batch.end();
-//        batch.begin();
-//        for(Comb comb:combs) {
-//            batch.draw(texture, comb.pos_x, comb.pos_y);
-//        }
-//        batch.end();
-
     }
 
     public int[] hit() {

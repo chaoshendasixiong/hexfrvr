@@ -13,7 +13,5 @@ public class Log {
     }
     public static void debug(String tag, String message) {
         Gdx.app.debug(tag, message);
-
-//        System.out.println(tag+"\t"+message);
     }
 }

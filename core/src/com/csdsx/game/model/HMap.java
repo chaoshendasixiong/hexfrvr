@@ -93,12 +93,7 @@ public class HMap extends Actor{
 
             int index = (y-1)*9+x;
             boolean flag = true;
-//            for(int k = 0; k < noShow.length; k++) {
-//                if(noShow[k] == index) {
-//                    flag = false;
-//                    break;
-//                }
-//            }
+
             if(flag) {
                 combs[index-1].type = type;
             }

@@ -23,21 +23,17 @@ import java.io.Serializable;
  */
 public class Cell extends Actor{
     private boolean falg;
-
     public void setFalg(boolean falg) {
         this.falg = falg;
     }
-
     //颜色
     private Color color;
     //逻辑坐标x
     private int x;
     //逻辑坐标y
     private int y;
-
     private float pos_x;
     private float pos_y;
-
     private Texture mTexture;
     private TextureRegion mTextureRegion;
     public Cell(int x, int y, String name) {
@@ -62,10 +58,7 @@ public class Cell extends Actor{
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 Actor actor = event.getTarget();
-
                 actor.setColor(Color.BROWN);
-//                ScaleByAction action2 = Actions.scaleBy(3, 3, 3);
-//                actor.addAction(action2);
             }
         });
         this.setHeight(this.mTextureRegion.getRegionHeight());
@@ -73,7 +66,6 @@ public class Cell extends Actor{
     }
 
     private void initPos() {
-
         this.pos_x = CellXY.getX(x, y);
         this.pos_y = CellXY.getY(y);
         this.setPosition(pos_x, pos_y, Align.center);

@@ -16,13 +16,6 @@ public class CellXY {
         }
     }
     public static float getY(int y) {
-//        if(y%2 == 0) {
-//            int n = y/2-1;
-//            return n*3*cell_len+2.5f*cell_len;
-//        }else{
-//            int n = (3*y-1)/2;
-//            return len*n;
-//        }
         return y*cell_len*3/2;
     }
     public static char[] getLogic_xy(float pos_x, float pos_y) {
@@ -45,7 +38,6 @@ public class CellXY {
         if(x >9||x ==0) {
             return null;
         }
-
         return result;
     }
 }

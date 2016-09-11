@@ -24,7 +24,7 @@ public class MyGame extends BaseGame {
         screen_width = Gdx.graphics.getWidth();
         screen_height = Gdx.graphics.getHeight();
         StageWrapper.initStage(GAME_WIDTH, GAME_HEIGHT);
-        NetManager.init();
+        //NetManager.init();
         setScreen(new GameScreen());
     }
 }

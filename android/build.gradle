@@ -1,6 +1,6 @@
 android {
-    buildToolsVersion "23.0.1"
-    compileSdkVersion 23
+    buildToolsVersion "29.0.3"
+    compileSdkVersion 29
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
@@ -16,8 +16,8 @@ android {
     }
     defaultConfig {
         applicationId "com.csdsx.game"
-        minSdkVersion 8
-        targetSdkVersion 23
+        minSdkVersion 29
+        targetSdkVersion 29
     }
 }
 
